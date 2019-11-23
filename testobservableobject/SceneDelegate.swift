@@ -20,7 +20,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView()
+        
+                 AppleUser.shared.appleID = "peter"
+        
+        //           DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
+        //                    AppleUser.shared.appleID = "bill"
+        //                }
+        //
+        
+        
+        
+        let contentView = ContentView(appleUser: AppleUser.shared)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
@@ -29,6 +39,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = window
             window.makeKeyAndVisible()
         }
+        
+       
+        
+        
+//
+//
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
