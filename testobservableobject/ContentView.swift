@@ -8,34 +8,20 @@
 
 import SwiftUI
 import Combine
-//https://www.avanderlee.com/swift/property-wrappers/
 
-@propertyWrapper
-struct PersistInUserDefaults<T> {
-    let key: String
-    let defaultValue: T
-    
-    var wrappedValue: T {
-        get {
-            return UserDefaults.standard.object(forKey: key) as? T ?? defaultValue
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: key)
-        }
-    }
-}
 
 
 class AppleUser: ObservableObject {
     
     static var shared = AppleUser()
     
-    let subject = PassthroughSubject<String, Never>()
     
-    @PersistInUserDefaults(key: "appleID", defaultValue: "") var appleID: String {willSet {
+    @Published var appleID: String = UserDefaults.standard.object(forKey: "appleID") as? String ?? "Blank" {willSet {
         
-        subject.send(newValue)
-        }}
+        UserDefaults.standard.set(newValue, forKey: "appleID")
+        }
+        
+    }
 }
 
 
@@ -60,7 +46,7 @@ struct ContentView: View {
             }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
-                          self.appleUser.appleID = ""
+                          self.appleUser.appleID = "Blank"
                       }
             
         }
