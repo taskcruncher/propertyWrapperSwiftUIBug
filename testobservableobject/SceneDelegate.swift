@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view that provides the window contents.
         
-                 AppleUser.shared.appleID = "peter"
+//                 AppleUser.shared.appleID = ""
         
         //           DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
         //                    AppleUser.shared.appleID = "bill"
